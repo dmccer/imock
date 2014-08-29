@@ -1,0 +1,34 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var mocker = require('../app');
+
+var args = process.argv;
+var defaultPort = 3000;
+var defaultDir = 'mock';
+var defaultWww = '';
+
+program
+    .version('0.0.1')
+    .option('-j, --json <json>', 'json 文件和配置目录')
+    .option('-p, --port [prot]', '端口号')
+    .option('-w, --www [www]', 'www 文件目录')
+    .on('--help', function () {
+        console.log('  示例:');
+        console.log('');
+
+        console.log('    -p --port 指定端口号');
+        console.log('    -j --json json 文件和配置目录');
+        console.log('    -w --www www 文件目录');
+        console.log('    -h --help 帮助文档');
+        console.log('    -v --version 当前版本号');
+        console.log('');
+    });
+
+program.parse(process.argv);
+
+if (!program.json) {
+    return console.log('缺少参数: -j --json json 文件和配置目录');
+}
+
+mocker(program.port || defaultPort, program.json || defaultDir, program.www || defaultWww);
