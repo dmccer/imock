@@ -17,7 +17,10 @@
     "mock",
     "api"
   ],
-  "author": "Kane",
+  "author": {
+    "name": "yunhua.xiao",
+    "email": "yunhua.xiao@dianping.com"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dmccer/mocker/issues"
