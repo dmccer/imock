@@ -1,10 +1,10 @@
 {
-  "name": "mocker",
+  "name": "imock",
   "version": "1.0.0",
   "description": "mock api",
   "main": "app.js",
   "bin": {
-    "mocker": "./bin/mocker"
+    "imock": "./bin/mocker"
   },
   "scripts": {
     "test": "grunt test"
