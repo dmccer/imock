@@ -7,7 +7,7 @@
     "imock": "./bin/mocker"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "cortex test"
   },
   "repository": {
     "type": "git",
