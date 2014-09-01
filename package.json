@@ -1,6 +1,6 @@
 {
   "name": "imock",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "mock api",
   "main": "app.js",
   "bin": {
