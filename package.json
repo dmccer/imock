@@ -1,12 +1,13 @@
 {
   "name": "imock",
-  "version": "1.0.4",
-  "description": "mock api",
+  "version": "2.0.1",
+  "description": "restful mock api",
   "main": "app.js",
   "bin": {
-    "imock": "./bin/mocker"
+    "imock": "./bin/imock"
   },
   "scripts": {
+    "test": "mocha test/handler.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
   "homepage": "https://github.com/dmccer/mocker",
   "dependencies": {
     "body-parser": "^1.6.6",
+    "chai": "^1.9.1",
     "commander": "^2.3.0",
     "ejs": "^1.0.0",
     "express": "^3.16.8",
