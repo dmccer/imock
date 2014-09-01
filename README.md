@@ -1,9 +1,9 @@
-# mocker
+# imock 
 
 ## Install
 
 ```bash
-$ npm install mocker -g
+$ npm install imock -g
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ $ imock -j json
 
 -p --port 指定 mock server 端口后，默认 3000
 
--w --www 指定静态服务器根目录(express.directory)
+-w --www 指定静态服务器根目录(express.directory)，默认当前目录
 
 
 ## route-config example
