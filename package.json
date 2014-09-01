@@ -23,7 +23,7 @@
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dmccer/mocker/issues"
+    "url": "https://github.com/dmccer/imock/issues"
   },
   "homepage": "https://github.com/dmccer/imock",
   "dependencies": {
