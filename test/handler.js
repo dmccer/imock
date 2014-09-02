@@ -74,9 +74,9 @@ describe('handler.js', function () {
     });
     
     var aget = function (_path) {
-        var base = '/mock';
+        var base = '/mock/';
 
-        app.get(url.resolve(base + '/', _path), function (req, res) {
+        app.get(url.resolve(base, _path), function (req, res) {
             handler.on(req, res, path.join(process.cwd(), 'test'), base); 
         });
     }
