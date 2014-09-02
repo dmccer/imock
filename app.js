@@ -22,9 +22,11 @@ module.exports = function (port, dir, www, base) {
     app.use(bodyParser.json());
 
     app.use(app.router);
+    
+    www = path.join('/', www);
 
-    app.use(express.directory(static));
-    app.use(express.static(static));
+    app.use(www, express.directory(static));
+    app.use(www, express.static(static));
 
     // development only
     if ('development' == app.get('env')) {
@@ -37,7 +39,9 @@ module.exports = function (port, dir, www, base) {
         base += '/';
     }
 
-    app.all(url.resolve(base, '/*'), function (req, res) {
+    base = url.resolve('/', base);
+    
+    app.all(url.resolve(base, '*'), function (req, res) {
         require('./lib/handler').on(req, res, rootPath, base);
     });
 

@@ -1,5 +1,5 @@
 # imock 
-mock server for front-end developer
+restful mock server for front-end developer
 
 [![NPM](https://nodei.co/npm/imock.png)](https://nodei.co/npm/imock/)
 
@@ -15,23 +15,23 @@ $ npm install imock -g
 ## Usage
 
 ```bash
-$ imock -j json
+$ imock -j json -b api
 ```
 
 ## Options
 
--j --json mock 文件目录，该目录下存放所有处理请求的 js
+-j --json 必填，mock 文件目录，该目录下存放所有处理请求的 js
 
--p --port 指定 mock server 端口后，默认 3000
+-b --base 必填，指定 mock 请求的 base path
 
--w --www 指定静态服务器根目录(express.directory)，默认当前目录 
+-p --port 可选，指定 mock server 端口后，默认 3000
 
--b --base 指定 mock 请求的 base path, 默认当前目录
+-w --www 可选，指定静态服务器根目录(express.directory)，默认当前目录 
 
 
 注: 
 
-    1. www 与 base 是同一个目录时，静态服务器不可用;
+    1. www 与 base 可以是同层级或 www 是 base 的父目录，base 不能是 www 的父目录;
     2. 通常 base 为 /mock 或 /api;
     3. 前端 js 中请求地址为 http://localhost:3000/mock 或 http://localhost:3000/api
 

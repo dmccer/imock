@@ -5,23 +5,21 @@ var mocker = require('../app');
 
 var args = process.argv;
 var defaultPort = 3000;
-var defaultDir = 'mock';
 var defaultWww = '';
-var defaultBase = '/';
 
 program
     .version('0.0.1')
     .option('-j, --json <json>', 'json 文件和配置目录')
-    .option('-p, --port [port]', '端口号')
     .option('-b, --base [base]', 'mock 请求的 base path')
+    .option('-p, --port [port]', '端口号')
     .option('-w, --www [www]', 'www 文件目录')
     .on('--help', function () {
         console.log('  示例:');
         console.log('');
 
         console.log('    -p --port 指定端口号');
-        console.log('    -j --json json 文件和配置目录');
         console.log('    -b --base mock 请求的 base path');
+        console.log('    -j --json json 文件和配置目录');
         console.log('    -w --www www 文件目录');
         console.log('    -h --help 帮助文档');
         console.log('    -v --version 当前版本号');
@@ -34,4 +32,8 @@ if (!program.json) {
     return console.log('缺少参数: -j --json json 文件和配置目录');
 }
 
-mocker(program.port || defaultPort, program.json || defaultDir, program.www || defaultWww, program.base || defaultBase);
+if (!program.base) {
+    return console.log('缺少参数: -b --base mock 请求 base path');
+}
+
+mocker(program.port || defaultPort, program.json, program.www || defaultWww, program.base);
