@@ -1,7 +1,7 @@
 {
   "name": "imock",
-  "version": "3.0.0",
-  "description": "restful mock api",
+  "version": "3.0.1",
+  "description": "restful mock server for front-end developer",
   "main": "app.js",
   "bin": {
     "imock": "./bin/imock"
