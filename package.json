@@ -1,6 +1,6 @@
 {
   "name": "imock",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "restful mock api",
   "main": "app.js",
   "bin": {
@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "chai": "^1.9.1",
-    "coveralls": "^2.11.1"
+    "coveralls": "^2.11.1",
+    "supertest": "^0.13.0"
   }
 }

@@ -26,6 +26,13 @@ $ imock -j json
 
 -w --www 指定静态服务器根目录(express.directory)，默认当前目录 
 
+-b --base 指定 mock 请求的 base path, 默认当前目录
+
+注: 
+    * www 与 base 是同一个目录时，静态服务器不可用;
+    * 通常 base 为 /mock 或 /api;
+    * 前端 js 中请求地址为 http://localhost:3000/mock 或 http://localhost:3000/api
+
 
 ## mock 请求处理文件 example
 

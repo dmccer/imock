@@ -1,11 +1,12 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var url = require('url');
 var bodyParser = require('body-parser');
 
 var rootPath = process.cwd();
 
-module.exports = function (port, dir, www) {
+module.exports = function (port, dir, www, base) {
     var app = express();
 
     var static = path.join(process.cwd(), www);
@@ -32,8 +33,12 @@ module.exports = function (port, dir, www) {
 
     rootPath = path.join(rootPath, dir);
 
-    app.all('/mock/*', function (req, res) {
-        require('./lib/handler').on(req, res, rootPath);
+    if (base[base.length - 1] != '/') {
+        base += '/';
+    }
+
+    app.all(url.resolve(base, '/*'), function (req, res) {
+        require('./lib/handler').on(req, res, rootPath, base);
     });
 
     http.createServer(app).listen(port, function() {
