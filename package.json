@@ -1,6 +1,6 @@
 {
   "name": "imock",
-  "version": "2.2.1",
+  "version": "3.0.0",
   "description": "restful mock api",
   "main": "app.js",
   "bin": {
