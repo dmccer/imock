@@ -4,7 +4,7 @@ mock server for front-end developer
 [![NPM](https://nodei.co/npm/imock.png)](https://nodei.co/npm/imock/)
 
 [![Build Status](https://travis-ci.org/dmccer/imock.svg)](https://travis-ci.org/dmccer/imock)
-[![Coverage Status](https://coveralls.io/repos/dmccer/imock/badge.png)](https://coveralls.io/r/dmccer/imock)
+[![Coverage Status](https://coveralls.io/repos/dmccer/imock/badge.png?branch=master)](https://coveralls.io/r/dmccer/imock?branch=master)
 
 ## Install
 
