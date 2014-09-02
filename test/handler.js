@@ -5,7 +5,8 @@ var should = chai.should;
 
 var path = require('path');
 var url = require('url');
-var handler = require('../lib/handler');
+var rewire = require("rewire");
+var handler = rewire('../lib/handler');
 
 var request = require('supertest');
 var express = require('express');
@@ -13,25 +14,20 @@ var bodyParser = require('body-parser');
 
 app = express();
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// parse application/json
-app.use(bodyParser.json());
-
-app.use(app.router);
-
 describe('handler.js', function () {
+    var getFilenames = handler.__get__('getFilenames');
+    var findExists = handler.__get__('findExists');
+
     describe('.getFilenames()', function () {
         it('should return 0 results when req.path = /mock || /mock/', function () {
             var reqPath = '/mock';
             var r = [];
 
-            var files = handler.getFilenames(reqPath, reqPath);
+            var files = getFilenames(reqPath, reqPath);
 
             assert.deepEqual(r, files);
 
-            files = handler.getFilenames(reqPath + '/', reqPath);
+            files = getFilenames(reqPath + '/', reqPath);
 
             assert.deepEqual(r, files);
         });
@@ -39,12 +35,12 @@ describe('handler.js', function () {
         it('should return 2 results when req.path = /mock/a', function () {
             var reqPath = '/mock/a';
             var r = ['a', 'id'];
-            var files = handler.getFilenames(reqPath, '/mock');
+            var files = getFilenames(reqPath, '/mock');
 
             assert.deepEqual(r, files);
 
             reqPath += '/';
-            files = handler.getFilenames(reqPath, '/mock');
+            files = getFilenames(reqPath, '/mock');
 
             assert.deepEqual(r, files);
         });
@@ -53,7 +49,7 @@ describe('handler.js', function () {
             var reqPath = '/mock/a/b';
             var r = ['a-b', 'id-b', 'a-id'];
 
-            var files = handler.getFilenames(reqPath, '/mock');
+            var files = getFilenames(reqPath, '/mock');
 
             assert.deepEqual(r, files);
         });
@@ -62,16 +58,16 @@ describe('handler.js', function () {
     describe('.findExists()', function () {
         it('should return null when req.path = /mock/a/b and no a-b.js, id-a.js, a-id.js file', function () {
             var reqPath = '/mock/a/b';
-            var files = handler.getFilenames(reqPath, '/mock');
-            var existsFilename = handler.findExists(files, path.join(process.cwd(), 'test'));
+            var files = getFilenames(reqPath, '/mock');
+            var existsFilename = findExists(files, path.join(process.cwd(), 'test'));
 
             assert.isUndefined(existsFilename);
         });
 
         it('should return c when req.path = /mock/c and has c.js', function () {
             var reqPath = '/mock/c';
-            var files = handler.getFilenames(reqPath, '/mock');
-            var existsFilename = handler.findExists(files, path.join(process.cwd(), 'test'));
+            var files = getFilenames(reqPath, '/mock');
+            var existsFilename = findExists(files, path.join(process.cwd(), 'test'));
 
             assert.equal('c', existsFilename);
         });
