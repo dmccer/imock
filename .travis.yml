@@ -4,6 +4,8 @@ node_js:
 
 before_script:
     - npm install -g mocha
+    - npm install -g istanbul
 
 script:
     - mocha ./test/handler.js
+    - istanbul cover _mocha --report lcovonly -- -R spec --recursive
