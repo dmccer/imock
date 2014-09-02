@@ -43,6 +43,6 @@ module.exports = function (port, dir, www, base) {
 
     http.createServer(app).listen(port, function() {
         console.log('mock 服务器已在（' + port + '）端口启动！');
-        console.log('通过下面地址访问mock数据:\n http://localhost:' + port + '/mock');
+        console.log('通过下面地址访问mock数据:\n http://localhost:' + port + base);
     });
 };
