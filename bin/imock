@@ -8,7 +8,7 @@ var defaultPort = 3000;
 var defaultWww = '';
 
 program
-    .version('3.0.1')
+    .version('3.0.3')
     .option('-j, --json <json>', 'json 文件和配置目录')
     .option('-b, --base [base]', 'mock 请求的 base path')
     .option('-p, --port [port]', '端口号')

@@ -24,7 +24,7 @@ $ imock -j json -b api
 
 -b --base 必填，指定 mock 请求的 base path
 
--p --port 可选，指定 mock server 端口后，默认 3000
+-p --port 可选，指定 mock server 端口号，默认 3000
 
 -w --www 可选，指定静态服务器根目录(express.directory)，默认当前目录 
 
