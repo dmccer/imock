@@ -23,7 +23,7 @@ module.exports = function (port, dir, www, base) {
 
     app.use(app.router);
     
-    www = path.join('/', www);
+    www = url.resolve('/', www);
 
     app.use(www, express.directory(static));
     app.use(www, express.static(static));
