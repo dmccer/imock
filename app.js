@@ -3,6 +3,7 @@ var http = require('http');
 var path = require('path');
 var url = require('url');
 var bodyParser = require('body-parser');
+var morgan = require('morgan');
 
 var rootPath = process.cwd();
 
@@ -13,7 +14,7 @@ module.exports = function (port, dir, www, base) {
 
     app.set('views', static);
     app.engine('html', require('ejs').renderFile);
-    app.use(express.logger('dev'));
+    app.use(morgan('dev'));
 
     // parse application/x-www-form-urlencoded
     app.use(bodyParser.urlencoded({ extended: false }));
