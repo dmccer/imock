@@ -1,6 +1,6 @@
 {
   "name": "imock",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "restful mock server for front-end developer",
   "main": "app.js",
   "bin": {
@@ -28,6 +28,7 @@
   "homepage": "https://github.com/dmccer/imock",
   "dependencies": {
     "body-parser": "^1.6.6",
+    "bytes": "^1.0.0",
     "commander": "^2.3.0",
     "ejs": "^1.0.0",
     "express": "^3.16.8",

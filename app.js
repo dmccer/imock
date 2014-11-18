@@ -4,6 +4,7 @@ var path = require('path');
 var url = require('url');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
+var bytes = require('bytes');
 
 var rootPath = process.cwd();
 
@@ -16,11 +17,22 @@ module.exports = function (port, dir, www, base) {
     app.engine('html', require('ejs').renderFile);
     app.use(morgan('dev'));
 
+    app.use(function (req, res, next) {
+        res.set('Cache-Control', 'no-cache');
+
+        next();
+    });
+
     // parse application/x-www-form-urlencoded
-    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.urlencoded({
+        extended: false,
+        limit: bytes('10mb')
+    }));
 
     // parse application/json
-    app.use(bodyParser.json());
+    app.use(bodyParser.json({
+        limit: bytes('10mb')
+    }));
 
     app.use(app.router);
     
