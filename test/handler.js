@@ -47,7 +47,7 @@ describe('handler.js', function () {
 
         it('should return 3 results when req.path = /mock/a/b', function () {
             var reqPath = '/mock/a/b';
-            var r = ['a-b', 'id-b', 'a-id'];
+            var r = ['a-b', 'id-b', 'a-id', 'id-id'];
 
             var files = getFilenames(reqPath, '/mock');
 
