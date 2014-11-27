@@ -4,7 +4,7 @@ module.exports = {
             code: 200,
             msg: {
                 shopName: '小南国',
-                shopId: '1234',
+                shopId: '124',
                 level: 5
             }
         });

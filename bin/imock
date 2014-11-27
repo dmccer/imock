@@ -28,12 +28,4 @@ program
 
 program.parse(process.argv);
 
-if (!program.json) {
-    return console.log('缺少参数: -j --json json 文件和配置目录');
-}
-
-if (!program.base) {
-    return console.log('缺少参数: -b --base mock 请求 base path');
-}
-
 mocker(program.port || defaultPort, program.json, program.www || defaultWww, program.base);

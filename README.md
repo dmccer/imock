@@ -20,9 +20,9 @@ $ imock -j json -b api
 
 ## Options
 
--j --json 必填，mock 文件目录，该目录下存放所有处理请求的 js
+-j --json 可选，mock 文件目录，该目录下存放所有处理请求的 js
 
--b --base 必填，指定 mock 请求的 base path
+-b --base 可选，指定 mock 请求的 base path(若 base = api，则请求 mock 数据的地址为 http://localhost:{port}/api/{js-filename})
 
 -p --port 可选，指定 mock server 端口号，默认 3000
 
@@ -34,6 +34,7 @@ $ imock -j json -b api
     1. www 与 base 可以是同层级或 www 是 base 的父目录，base 不能是 www 的父目录;
     2. 通常 base 为 /mock 或 /api;
     3. 前端 js 中请求地址为 http://localhost:3000/mock 或 http://localhost:3000/api
+    4. -j, -b 参数须同时使用 或 都不使用
 
 
 ## mock 请求处理文件 example
