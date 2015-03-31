@@ -42,6 +42,32 @@ module.exports = function(port, dir, www, base) {
 
   app.use(app.router);
 
+  if (dir != null) {
+    rootPath = path.join(rootPath, dir);
+
+    // if (base == null) {
+    //   return console.log('缺少参数: -b --base mock 请求 base path');
+    // }
+    
+    if (base == null) {
+      base = '.';      
+    }
+
+    if (base[base.length - 1] !== '/') {
+      base += '/';
+    }
+
+    base = url.resolve('/', base);
+
+    app.all(url.resolve(base, '*'), function(req, res, next) {
+      if (req.xhr) {
+        return require('./lib/handler').on(req, res, rootPath, base);
+      }
+
+      next();
+    });
+  }
+
   www = url.resolve('/', www);
 
   app.use(www, express.directory(static));
@@ -55,24 +81,7 @@ module.exports = function(port, dir, www, base) {
   if ('development' === app.get('env')) {
     app.use(express.errorHandler());
   }
-
-  if (dir != null) {
-    rootPath = path.join(rootPath, dir);
-
-    if (base == null) {
-      return console.log('缺少参数: -b --base mock 请求 base path');
-    }
-
-    if (base[base.length - 1] !== '/') {
-      base += '/';
-    }
-
-    base = url.resolve('/', base);
-
-    app.all(url.resolve(base, '*'), function(req, res) {
-      require('./lib/handler').on(req, res, rootPath, base);
-    });
-  }
+  
 
   getport(port, function(e, p) {
     if (e) {

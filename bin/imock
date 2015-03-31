@@ -7,24 +7,27 @@ var args = process.argv;
 var defaultPort = 3000;
 var defaultWww = '';
 
+function help() {
+    console.log('  示例:');
+    console.log('');
+
+    console.log('    -p --port 指定端口号');
+    console.log('    -b --base mock 请求的 base path');
+    console.log('    -j --json json 文件和配置目录');
+    console.log('    -w --www www 文件目录');
+    console.log('    -h --help 帮助文档');
+    console.log('    -v --version 当前版本号');
+    console.log('');
+}
+
 program
     .version('3.0.4')
     .option('-j, --json <json>', 'json 文件和配置目录')
     .option('-b, --base [base]', 'mock 请求的 base path')
     .option('-p, --port [port]', '端口号')
     .option('-w, --www [www]', 'www 文件目录')
-    .on('--help', function () {
-        console.log('  示例:');
-        console.log('');
-
-        console.log('    -p --port 指定端口号');
-        console.log('    -b --base mock 请求的 base path');
-        console.log('    -j --json json 文件和配置目录');
-        console.log('    -w --www www 文件目录');
-        console.log('    -h --help 帮助文档');
-        console.log('    -v --version 当前版本号');
-        console.log('');
-    });
+    .on('--help', help)
+    .on('-h', help);
 
 program.parse(process.argv);
 
