@@ -48,9 +48,9 @@ module.exports = function(port, dir, www, base) {
     // if (base == null) {
     //   return console.log('缺少参数: -b --base mock 请求 base path');
     // }
-    
+
     if (base == null) {
-      base = '.';      
+      base = '.';
     }
 
     if (base[base.length - 1] !== '/') {
@@ -60,11 +60,11 @@ module.exports = function(port, dir, www, base) {
     base = url.resolve('/', base);
 
     app.all(url.resolve(base, '*'), function(req, res, next) {
-      if (req.xhr) {
-        return require('./lib/handler').on(req, res, rootPath, base);
-      }
+      // if (req.xhr) {
+      return require('./lib/handler').on(req, res, rootPath, base);
+      // }
 
-      next();
+      // next();
     });
   }
 
@@ -81,7 +81,7 @@ module.exports = function(port, dir, www, base) {
   if ('development' === app.get('env')) {
     app.use(express.errorHandler());
   }
-  
+
 
   getport(port, function(e, p) {
     if (e) {
@@ -89,7 +89,7 @@ module.exports = function(port, dir, www, base) {
     }
 
     http.createServer(app).listen(p, function() {
-      console.log('静态服务器已启动: http://localhost:' + p);
+      // console.log('静态服务器已启动: http://localhost:' + p);
 
       if (dir != null && base != null) {
         console.log('mock 服务器已启动:  http://localhost:' + p + base);
