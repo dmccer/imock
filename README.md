@@ -1,4 +1,4 @@
-# imock 
+# imock
 restful mock server for front-end developer
 
 [![NPM](https://nodei.co/npm/imock.png)](https://nodei.co/npm/imock/)
@@ -26,10 +26,12 @@ $ imock -j json -b api
 
 -p --port 可选，指定 mock server 端口号，默认 3000
 
--w --www 可选，指定静态服务器根目录(express.directory)，默认当前目录 
+-w --www 可选，指定静态服务器根目录(express.directory)，默认当前目录
+
+-t --target 可选，若 mock 目录没有相应处理请求的 js，则会使用 target 指定的服务器来处理
 
 
-注: 
+注:
 
     1. www 与 base 可以是同层级或 www 是 base 的父目录，base 不能是 www 的父目录;
     2. 通常 base 为 /mock 或 /api;
@@ -54,7 +56,7 @@ exports.get = function (req, res) {
     });
 }
 
-// request path: /mock/shop/1234 
+// request path: /mock/shop/1234
 // request method: put
 exports.put = function (req, res) {
     res.json(200, {
