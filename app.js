@@ -6,10 +6,11 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var bytes = require('bytes');
 var getport = require('getport');
+var httpProxy = require('http-proxy');
 
 var rootPath = process.cwd();
 
-module.exports = function(port, dir, www, base) {
+module.exports = function(port, dir, www, base, proxyTarget) {
   var app = express();
 
   var static = path.join(process.cwd(), www);
@@ -59,10 +60,18 @@ module.exports = function(port, dir, www, base) {
 
     base = url.resolve('/', base);
 
+    var proxy = httpProxy.createProxyServer({});
+
     app.all(url.resolve(base, '*'), function(req, res, next) {
       // if (req.xhr) {
-      return require('./lib/handler').on(req, res, rootPath, base);
+      var r = require('./lib/handler').on(req, res, rootPath, base);
       // }
+
+      if (!r) {
+        proxy.web(req, res, { target: proxyTarget });
+      }
+
+      return;
 
       // next();
     });
